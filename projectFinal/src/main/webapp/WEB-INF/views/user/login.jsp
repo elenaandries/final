@@ -5,6 +5,7 @@
 
 <t:user_layout>
     <div class="container">
+        <div class="col-md-4 col-md-offset-4">
         <c:if test="${not empty error}">
             <div class="error">${error}</div>
         </c:if>
@@ -23,8 +24,10 @@
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" />
 
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
+            <br>
+            <br>
             <input value="Login" class="btn btn-lg btn-primary btn-block" type="submit" />
         </form>
+        </div>
     </div>
 </t:user_layout>

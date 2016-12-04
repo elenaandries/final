@@ -11,21 +11,21 @@ import java.util.Set;
  * Created by ebastic on 11/23/2016.
  */
 @Entity
-@Table(name="city")
+@Table(name="cities")
 public class City implements Serializable {
 
     private static final long serialVersionUID = 2L;
 
     @Id @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id", unique = true, nullable = false)
-    public Integer id;
+    public Long id;
 
     @Column(name="name", unique = true, nullable = false)
     public String name;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    /*@ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="countryId")
-    private Country country;
+    private Country country;*/
 
     @JsonBackReference
     @ManyToMany(fetch=FetchType.LAZY)
@@ -36,7 +36,7 @@ public class City implements Serializable {
     )
     private Set<User> users;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -48,7 +48,7 @@ public class City implements Serializable {
         return users;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -56,11 +56,11 @@ public class City implements Serializable {
         this.name = name;
     }
 
-    public void setCountry(Country country) {
+    /*public void setCountry(Country country) {
         this.country = country;
     }
 
     public Country getCountry() {
         return country;
-    }
+    }*/
 }

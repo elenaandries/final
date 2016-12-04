@@ -6,14 +6,14 @@ import java.io.Serializable;
 /**
  * Created by ebastic on 11/23/2016.
  */
-@Entity
-@Table(name="country")
+//@Entity
+//@Table(name="country")
 public class Country implements Serializable {
 
     private Integer id;
     private String name;
 
-    @Id @GeneratedValue(strategy= GenerationType.AUTO)
+    //@Id @GeneratedValue(strategy= GenerationType.AUTO)
     public Integer getId() {
         return id;
     }

@@ -1,12 +1,10 @@
 package com.example.controller;
 
 import com.example.model.City;
-import com.example.model.User;
 import com.example.service.CityService;
 import com.example.service.UserService;
 import com.example.service.WeatherService;
 import com.example.service.open_weather.Forecast;
-import com.example.service.open_weather.Main;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -19,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.security.core.context.SecurityContextHolder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 /**
  * Created by ebastic on 11/24/2016.
  */
@@ -41,9 +38,8 @@ public class UserController {
         String cityId = request.getParameter("id");
 
         if (cityId != null && !cityId.isEmpty()) {
-            City city = cityService.findById(Integer.parseInt(cityId));
-
-            Forecast forecast =  weatherService.getForecast(city.getName());
+            City city = cityService.findById(Long.parseLong(cityId));
+            Forecast forecast =  weatherService.getForecast(city);
 
             model.addAttribute("forecast", forecast);
             model.addAttribute("selectedCity", city);
@@ -54,10 +50,14 @@ public class UserController {
         return "user/cities";
     }
 
-    @RequestMapping(path="/add", method = RequestMethod.POST)
-    public String saveCity(@ModelAttribute("post") City city, BindingResult result, ModelMap model) {
-        cityService.create(city);
-        return "redirect:/user/cities";
+    @RequestMapping(path="/cities/add", method = RequestMethod.POST)
+    public String saveCity(@ModelAttribute("post") com.example.dto.City city, BindingResult result, ModelMap model) {
+        City obj = new City();
+        obj.setName(city.getName());
+
+        City newCity = cityService.create(obj);
+
+        return "redirect:/user/cities?id=" + newCity.getId();
     }
 
     @RequestMapping(path="/logout", method=RequestMethod.GET)

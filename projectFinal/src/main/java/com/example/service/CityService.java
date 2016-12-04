@@ -14,7 +14,7 @@ public interface CityService {
     City create(City city);
     List<City> findAll();
     City update(City city, String cityName);
-    void delete(Integer id);
+    void delete(Long id);
     City findByName(City city);
-    City findById(Integer id);
+    City findById(Long id);
 }

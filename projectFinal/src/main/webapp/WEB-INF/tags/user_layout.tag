@@ -14,7 +14,6 @@
 
     <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <link href="/signin.css" rel="stylesheet">
 </head>
 
 <body>

@@ -13,7 +13,7 @@ import java.util.Set;
  * Created by ebastic on 11/23/2016.
  */
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -21,7 +21,7 @@ public class User implements Serializable {
     @Id
     @Column(name="id", unique = true, nullable = false)
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name="name", unique = true, nullable = false)
     private String name;
@@ -47,7 +47,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -59,7 +59,7 @@ public class User implements Serializable {
         return password;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

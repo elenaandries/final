@@ -3,6 +3,7 @@
 <spring:url value="/" var="baseURI" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@tag description="Layout Tag" pageEncoding="UTF-8"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <head>
@@ -11,7 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Weather</title>
-
+    <style type="text/css" >
+            .container {
+                width: 970px !important;
+            }
+            #second th, #second td{
+                font-size: 80%;
+            }
+    </style>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -32,15 +40,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <c:choose>
-                    <c:when test="${empty username}">
-                        <li><a href="${baseURI}users/login">Login</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li style="color: #fff"><a href="#">Logat ca ${fn:escapeXml(username)}</a></li>
-                        <li style="color: #fff"><a href="${baseURI}user/logout">Deconectare</a></li>
-                    </c:otherwise>
-                </c:choose>
+                <li><security:authorize access="isAuthenticated()">
+                    <p class="navbar-text">Logged as <security:authentication property="principal.username" /></p>
+                </security:authorize></li>
+                <li><a href="/user/logout">Logout</a></li>
             </ul>
         </div>
     </div>
@@ -51,9 +54,6 @@
 
         </div>
         <div class="col-sm-7 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <br>
-            <br>
-            <br>
             <br>
             <br>
             <br>

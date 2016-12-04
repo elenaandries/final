@@ -24,9 +24,17 @@ public class HourlyForecast {
         return dt;
     }
 
-    public String timestampToString(long dt) {
-        Date time = new Date(dt*1000);
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM d H:mm", Locale.CANADA);
+    public String timestampToString() {
+        Date time = new Date(this.dt*1000);
+        SimpleDateFormat sdf = new SimpleDateFormat("ha", Locale.UK);
+        String date = sdf.format(time);
+
+        return date.toString();
+    }
+
+    public String getDay() {
+        Date time = new Date(this.dt*1000);
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM d", Locale.UK);
         String date = sdf.format(time);
 
         return date.toString();

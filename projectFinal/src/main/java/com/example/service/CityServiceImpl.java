@@ -39,14 +39,14 @@ public class CityServiceImpl implements CityService {
             }
         updateCity.setId(city.getId());
         updateCity.setName(city.getName());
-        updateCity.setCountry(city.getCountry());
+        //updateCity.setCountry(city.getCountry());
 
         return updateCity;
     }
 
     @Override
     @Transactional
-    public void delete(Integer id) {
+    public void delete(Long id) {
         City deletedCity = cityRepository.findOne(id);
 
         if (deletedCity == null)
@@ -63,7 +63,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public City findById(Integer id) {
+    public City findById(Long id) {
         return cityRepository.findOne(id);
     }
 

@@ -1,5 +1,6 @@
 package com.example.config;
 
+import com.example.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,14 +18,13 @@ import javax.sql.DataSource;
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    DataSource dataSource;
+    private CustomUserDetailsService customUserDetailsService;
 
     @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select name as username, password, 1 as enabled from user where name = ?")
-                .authoritiesByUsernameQuery("select name as username, \"user\" as role from user where name = ?");
+    public void configAuthentication(AuthenticationManagerBuilder registry) throws Exception {
+        registry.userDetailsService(customUserDetailsService);
     }
+
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -34,11 +34,13 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        /*http.authorizeRequests()
+        http.csrf().disable();
+
+        http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/user/login").permitAll()
                 .and().csrf().disable();
-                */
+
     }
 }

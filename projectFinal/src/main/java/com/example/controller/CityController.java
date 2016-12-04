@@ -22,6 +22,29 @@ public class CityController {
     @Autowired
     private CityService cityService;
 
+
+    @RequestMapping(value="/{id}/delete", method = RequestMethod.GET)
+    public String deleteCity(@PathVariable Long id) {
+        cityService.delete(id);
+        return "redirect:/user/cities";
+    }
+
+/*
+    @RequestMapping(value="/{name}", method = RequestMethod.PUT)
+    public String updateUserCity(@RequestBody City city, @PathVariable String name) {
+        userService.update();
+        User user = userService.findByCredentials()
+
+        return "redirect:user/list";
+    }
+
+    @RequestMapping(value = "/{name}", method = RequestMethod.PUT)
+    public List<City> updateUserCity(@RequestBody City city,@PathVariable String name){
+    userService.updateCities(city, name);
+    User user = userService.findByName(name);
+    return user.getCities();
+    }
+
     @Autowired
     private UserService userService;
 
@@ -56,27 +79,6 @@ public class CityController {
 
         return "redirect:/city/listare";
     }
-
-    @RequestMapping(value="/{id}/delete", method = RequestMethod.GET)
-    public String deleteCity(@PathVariable Integer id) {
-        cityService.delete(id);
-        return "redirect:/user/cities";
-    }
-
-/*
-    @RequestMapping(value="/{name}", method = RequestMethod.PUT)
-    public String updateUserCity(@RequestBody City city, @PathVariable String name) {
-        userService.update();
-        User user = userService.findByCredentials()
-
-        return "redirect:user/list";
-    }
-
-    @RequestMapping(value = "/{name}", method = RequestMethod.PUT)
-    public List<City> updateUserCity(@RequestBody City city,@PathVariable String name){
-    userService.updateCities(city, name);
-    User user = userService.findByName(name);
-    return user.getCities();
-    }*/
+    */
 
 }
