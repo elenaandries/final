@@ -57,11 +57,12 @@ public class CityController {
         return "redirect:/city/listare";
     }
 
-    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-    public String findCity(@PathVariable Integer id) {
+    @RequestMapping(value="/{id}/delete", method = RequestMethod.GET)
+    public String deleteCity(@PathVariable Integer id) {
         cityService.delete(id);
-        return "redirect:user/list";
+        return "redirect:/user/cities";
     }
+
 /*
     @RequestMapping(value="/{name}", method = RequestMethod.PUT)
     public String updateUserCity(@RequestBody City city, @PathVariable String name) {

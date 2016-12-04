@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -50,6 +52,12 @@ public class UserController {
         model.addAttribute("cities", cityService.findAll());
 
         return "user/cities";
+    }
+
+    @RequestMapping(path="/add", method = RequestMethod.POST)
+    public String saveCity(@ModelAttribute("post") City city, BindingResult result, ModelMap model) {
+        cityService.create(city);
+        return "redirect:/user/cities";
     }
 
     @RequestMapping(path="/logout", method=RequestMethod.GET)

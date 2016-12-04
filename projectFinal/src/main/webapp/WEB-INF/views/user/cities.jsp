@@ -31,7 +31,7 @@
                 <td><c:out value="${city.getCountry().getName()}"/></td>
                 <td>
                     <a href="/city/${city.getId()}/update">Edit</a>
-                    <a href="/city/${city.getId()}}/delete">Delete</a>
+                    <a href="/city/${city.getId()}/delete">Delete</a>
                 </td>
             </tr>
         </c:forEach>

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by ebastic on 11/23/2016.
@@ -34,7 +35,7 @@ public class User implements Serializable {
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name="city_id")
     )
-    private Collection<City> listOfCities;
+    private Set<City> listOfCities;
 
     protected User(){
         // no-args constructor required by JPA spec
@@ -70,11 +71,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Collection<City> getListOfCities() {
+    public Set<City> getListOfCities() {
         return listOfCities;
     }
 
-    public void setListOfCities(Collection<City> listOfCities) {
+    public void setListOfCities(Set<City> listOfCities) {
         this.listOfCities = listOfCities;
     }
 

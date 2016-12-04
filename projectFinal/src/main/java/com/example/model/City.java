@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
+
 /**
  * Created by ebastic on 11/23/2016.
  */
@@ -32,7 +34,7 @@ public class City implements Serializable {
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name="city_id")
     )
-    private Collection<User> users;
+    private Set<User> users;
 
     public Integer getId() {
         return id;
@@ -42,7 +44,7 @@ public class City implements Serializable {
         return name;
     }
 
-    public Collection<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
